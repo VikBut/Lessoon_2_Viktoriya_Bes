@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c774de122b0acaf4f867a920230124ed, type: 3}
+  m_Name: Frii
+  m_EditorClassIdentifier: Assembly-CSharp::ItemTypes
+  itemName: Fri
+  maxAmount: 10
+  itenPrefab: {fileID: 1691470734916114097, guid: 155ab4117afacb54db2952ef57aa4fe8, type: 3}
+  icon: {fileID: 2213216445673729607, guid: ce6e02f87d2876445ad23c736a5afec9, type: 3}
+  itemType: 1

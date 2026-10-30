@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c774de122b0acaf4f867a920230124ed, type: 3}
+  m_Name: GreenPotion
+  m_EditorClassIdentifier: Assembly-CSharp::ItemTypes
+  itemName: Green Potion
+  maxAmount: 10
+  itenPrefab: {fileID: 2771550402294527119, guid: 3c8f50c76d219ea4995c6be7c41cc234, type: 3}
+  icon: {fileID: -8829265447456062949, guid: 5aed39c57db18d44abe53a91fc2b19e1, type: 3}
+  itemType: 0

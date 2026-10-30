@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c774de122b0acaf4f867a920230124ed, type: 3}
+  m_Name: KnifeType1
+  m_EditorClassIdentifier: Assembly-CSharp::ItemTypes
+  itemName: Knife Type 1
+  maxAmount: 1
+  itenPrefab: {fileID: 8373684380319837777, guid: 19d492aa8da13204f8d60d1baa6cc61b, type: 3}
+  icon: {fileID: -6179832450668924564, guid: 1b6792e4061d78949a1bd2e5e90c29c3, type: 3}
+  itemType: 2
