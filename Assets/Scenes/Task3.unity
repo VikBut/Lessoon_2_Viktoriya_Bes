@@ -148,10 +148,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c65375dc622b424d937695a3a9b5ade, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Arena
-  _spawnPointEnemy: {fileID: 1554560482}
-  _spawnPointHero: {fileID: 1489416050}
-  _prefabHero: {fileID: 6221382682597520541, guid: 6a7d723c00b3a1a48a13a9c3ba5dd499, type: 3}
-  _prefabEnemy: {fileID: 4899615419776235252, guid: 0dbd6c0d9367cc343953c3df2d8ab829, type: 3}
+  m_spawnPointEnemy: {fileID: 1554560482}
+  m_spawnPointHero: {fileID: 1489416050}
+  m_prefabHero: {fileID: 6221382682597520541, guid: 6a7d723c00b3a1a48a13a9c3ba5dd499, type: 3}
+  m_prefabEnemy: {fileID: 4899615419776235252, guid: 0dbd6c0d9367cc343953c3df2d8ab829, type: 3}
 --- !u!4 &466547032
 Transform:
   m_ObjectHideFlags: 0

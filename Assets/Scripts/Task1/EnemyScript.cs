@@ -1,101 +1,104 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
-public class EnemyScript : MonoBehaviour
+namespace Task1
 {
-    [SerializeField, Range(0, 99)] private int armor;
-    [SerializeField] private ElementsGun typeGun; 
-    
-    private Material material;
-    private int HP = 100;
-    public Animator animator;
-    public Slider healthSlider;
-    private float randomValue;
-    private Color colorA = Color.orange;
-    private Color colorB = Color.blue;
-    private Color colorC;
-    private Color defaultColorEnemy;
-    public MagicType currentElementEnemy;
+    public class EnemyScript : MonoBehaviour
+    {
+        [SerializeField] 
+        private ElementsGun m_typeGun; 
+        
+        [SerializeField]
+        [Range(0, 99)]
+        private int m_armor;
+        
+        private Color m_colorA = Color.orange;
+        private Color m_colorB = Color.blue;
+        private Color m_colorC;
+        private Color m_defaultColorEnemy;
+        private Material m_material;
+        private int m_hp = 100;
+        private float m_randomValue;
+        
+        public MagicType currentElementEnemy;
+        public Animator animator;
+        public Slider healthSlider;
+        public int MArmor => m_armor;
 
-    void Start()
-    {
-        material = GetComponent<Renderer>().material;
-        defaultColorEnemy = material.color;
-        colorC = defaultColorEnemy;
-    }
-    void Update()
-    {
-        healthSlider.value = HP;
-    }
-
-    public Color ApplyColor()
-    {
-        switch (currentElementEnemy)
+        void Start()
         {
-            case MagicType.Fire:
-            {
-                return colorA;
-            }
-            case MagicType.Ice:
-            {
-                return colorB;
-            }
-            case MagicType.None:
-            {
-                return colorC;
-            }
+            m_material = GetComponent<Renderer>().material;
+            m_defaultColorEnemy = m_material.color;
+            m_colorC = m_defaultColorEnemy;
+        }
+        void Update()
+        {
+            healthSlider.value = m_hp;
         }
 
-        return default;
-    }
-
-    private void OnValidate()
-    {
-        if (material != null && Application.isPlaying)
+        public Color ApplyColor()
         {
-            defaultColorEnemy = ApplyColor();
-            material.color = defaultColorEnemy;
-        }
-    }
-    
-    public void StartEffect()
-    {
-        StartCoroutine(ColorDamage());
-    }
-
-    private IEnumerator ColorDamage()
-    {
-        material.color = Color.red;
-
-        yield return new WaitForSeconds(0.5f);
-
-        material.color = defaultColorEnemy;
-    }
-    
-    public int lastDamage;
-    
-    public void TakeDamage(int damage)
-    {
-            lastDamage = Mathf.Clamp(damage - armor, 1, 100);
-            HP -= lastDamage;
-            
-
-            
-        
-        
-        if (HP <= 0)
+            switch (currentElementEnemy)
             {
-            animator.SetTrigger("death");
-            healthSlider.gameObject.SetActive(false);
+                case MagicType.Fire:
+                {
+                    return m_colorA;
+                }
+                case MagicType.Ice:
+                {
+                    return m_colorB;
+                }
+                case MagicType.None:
+                {
+                    return m_colorC;
+                }
             }
-        else 
-        {
-            animator.SetTrigger("damage");
-            StartEffect();
-            
+
+            return default;
         }
-        
-    }
+
+        private void OnValidate()
+        {
+            if (m_material != null && Application.isPlaying)
+            {
+                m_defaultColorEnemy = ApplyColor();
+                m_material.color = m_defaultColorEnemy;
+            }
+        }
     
+        public void StartEffect()
+        {
+            StartCoroutine(ColorDamage());
+        }
+
+        private IEnumerator ColorDamage()
+        {
+            m_material.color = Color.red;
+
+            yield return new WaitForSeconds(0.5f);
+
+            m_material.color = m_defaultColorEnemy;
+        }
+    
+        public int lastDamage;
+    
+        public void TakeDamage(int damage)
+        {
+            lastDamage = Mathf.Clamp(damage, 0, 100);
+            m_hp -= lastDamage;
+
+            if (m_hp <= 0)
+            {
+                animator.SetTrigger("death");
+                healthSlider.gameObject.SetActive(false);
+            }
+            else 
+            {
+                animator.SetTrigger("damage");
+                StartEffect();
+            
+            }
+        }
+    }
 }

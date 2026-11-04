@@ -1,4 +1,6 @@
 public enum EnemyFighterType 
 {
-    Goblin, Orc, Troll
+    Goblin, 
+    Orc, 
+    Troll
 }

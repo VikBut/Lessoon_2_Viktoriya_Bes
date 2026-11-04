@@ -1,4 +1,5 @@
 public enum HeroFighterType 
 {
-    Warrior, Mage
+    Warrior, 
+    Mage
 }

@@ -5,9 +5,9 @@ using UnityEngine.EventSystems;
 
 public class InventoryManeger  : MonoBehaviour
 {
+    public FirstPersonMovement playerMovement;
     public GameObject uiPanel;
     public Transform inventoryPanel;
-    public FirstPersonMovement playerMovement;
     public List<Slot> slots = new List<Slot>();
     public bool isOpened;
 
@@ -28,7 +28,6 @@ public class InventoryManeger  : MonoBehaviour
 
     private void Update()
     {
-        
         if (Input.GetKeyDown(KeyCode.E))
         {
             if (isOpened)
@@ -47,7 +46,6 @@ public class InventoryManeger  : MonoBehaviour
             }
             
             isOpened =  !isOpened;
-            
         }
         
         if (Input.GetKeyDown(KeyCode.R))
@@ -81,6 +79,7 @@ public class InventoryManeger  : MonoBehaviour
                         potionInt += slot.amount;
                         potionUnique = 1;
                     }
+                    
                     countIn++;
                 } 
                 
@@ -99,7 +98,6 @@ public class InventoryManeger  : MonoBehaviour
                 print("Уникальных предметов: " + allUnique);
                 
             }
-            
         }
     }
     
@@ -130,7 +128,5 @@ public class InventoryManeger  : MonoBehaviour
         
         Debug.Log("Инвентарь заполнен");
         return false;
-        
     }
-    
 }

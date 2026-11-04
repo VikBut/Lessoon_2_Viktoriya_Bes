@@ -4,7 +4,6 @@ public class AttackScript : MonoBehaviour
 {
     [SerializeField] private Animator animator;
     
-    
     void Update()
     {
         if (Input.GetButtonDown("Fire1"))
@@ -16,6 +15,5 @@ public class AttackScript : MonoBehaviour
         {
             animator.SetBool("attack", false);
         }
-        
     }
 }

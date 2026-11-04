@@ -2,12 +2,18 @@ using UnityEngine;
 
 public class PlayerRaycast : MonoBehaviour
 {
-    [SerializeField] private Camera _camera;
-    [SerializeField] private LayerMask _layerMask;
-    [SerializeField] private float _raycastDistance = 1f;
+    [SerializeField] 
+    private Camera m_camera;
+    
+    [SerializeField]
+    private LayerMask _layerMask;
+    
+    [SerializeField]
+    private float _raycastDistance = 1f;
 
     [Header("Inventory")]
-    [SerializeField] private InventoryManeger _inventoryManeger;
+    [SerializeField] 
+    private InventoryManeger _inventoryManeger;
 
     void Update()
     {
@@ -15,7 +21,7 @@ public class PlayerRaycast : MonoBehaviour
         {
             RaycastHit hit;
 
-            if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out hit, _raycastDistance, _layerMask))
+            if (Physics.Raycast(m_camera.transform.position, m_camera.transform.forward, out hit, _raycastDistance, _layerMask))
             {
                 if (hit.collider.TryGetComponent(out Item _item))
                 {
@@ -30,9 +36,9 @@ public class PlayerRaycast : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (_camera != null)
+        if (m_camera != null)
         {
-            Debug.DrawRay(_camera.transform.position, _camera.transform.forward * _raycastDistance, Color.red);
+            Debug.DrawRay(m_camera.transform.position, m_camera.transform.forward * _raycastDistance, Color.red);
         }
     }
 }

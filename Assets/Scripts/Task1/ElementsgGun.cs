@@ -1,34 +1,40 @@
 using System;
+using Task1;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class ElementsGun : MonoBehaviour
 {
     private const float MagicDamage = 1.5f;
-
-    public int damageAmount;
-
-    private Material material;
-    private Color colorA = Color.orange;
-    private Color colorB = Color.blue;
-    private Color defaultColor;
-    private Color endColor;
-    private float randomValue;
+    private const float ChanceCriticalDamage = 0.3f;
+    
+    [SerializeField] 
+    private Calculator m_calculator;
+    
+    private Material m_material;
+    private Color m_colorA = Color.orange;
+    private Color m_colorB = Color.blue;
+    private Color m_defaultColor;
+    private Color m_endColor;
+    private float m_randomValue;
+    
+    [NonSerialized] 
+    public bool isCritical;
+    
+    [NonSerialized] 
+    public bool elementForCalc;
+    
+    [NonSerialized] 
+    public int damageReceived;
+    
     public MagicType currentElement;
     public int amountForCalc;
-
-
-    private const float ChanceCriticalDamage = 0.3f;
-    [NonSerialized] public bool isCritical;
-    [NonSerialized] public bool elementForCalc;
-    [NonSerialized] public int damageReceived;
-
-
+    public int damageAmount;
+    
     public void Start()
     {
-        material = GetComponent<Renderer>().material;
-        defaultColor = material.color;
-
+        m_material = GetComponent<Renderer>().material;
+        m_defaultColor = m_material.color;
     }
 
     public Color ApplyColor(MagicType newElement)
@@ -37,15 +43,15 @@ public class ElementsGun : MonoBehaviour
         {
             case MagicType.Fire:
             {
-                return colorA;
+                return m_colorA;
             }
             case MagicType.Ice:
             {
-                return colorB;
+                return m_colorB;
             }
             case MagicType.None:
             {
-                return defaultColor;
+                return m_defaultColor;
             }
         }
 
@@ -54,25 +60,21 @@ public class ElementsGun : MonoBehaviour
 
     private void OnValidate()
     {
-        if (material != null && Application.isPlaying)
+        if (m_material != null && Application.isPlaying)
         {
-
-            material.color = ApplyColor(currentElement);
+            m_material.color = ApplyColor(currentElement);
         }
     }
     
-
     private void OnTriggerEnter(Collider other)
     {
-        
         elementForCalc = false;
-        damageReceived = damageAmount;
-        
 
         if (other.CompareTag("Enemy"))
         {
             EnemyScript enemyScript = other.GetComponent<EnemyScript>();
             MagicType enemyMagicType = enemyScript.currentElementEnemy;
+            damageReceived = Mathf.Max(1, damageAmount - enemyScript.MArmor);
 
             if (currentElement == MagicType.None || enemyMagicType == MagicType.None)
             {
@@ -81,20 +83,22 @@ public class ElementsGun : MonoBehaviour
             }
             else if (currentElement != enemyMagicType)
             {
-                damageReceived = Mathf.FloorToInt(damageAmount * MagicDamage);
+                damageReceived = Mathf.FloorToInt(damageReceived * MagicDamage);
 
                 CriticalDamage(damageReceived);
                 enemyScript.TakeDamage(amountForCalc);
                 elementForCalc = true;
             }
-            else if ((currentElement == MagicType.Fire && enemyMagicType == MagicType.Fire) || (currentElement == MagicType.Ice && enemyMagicType == MagicType.Ice))
+            else if ((currentElement == MagicType.Fire && enemyMagicType == MagicType.Fire)
+                     || (currentElement == MagicType.Ice && enemyMagicType == MagicType.Ice))
             {
                 damageReceived = 0;
                 amountForCalc = 0;
                 elementForCalc = false;
                 isCritical = false;
+
+                enemyScript.TakeDamage(0);
             }
-            
         }
     }
     
