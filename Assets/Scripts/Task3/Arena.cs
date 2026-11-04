@@ -4,6 +4,9 @@ using UnityEngine;
 public class Arena : MonoBehaviour
 {
     [SerializeField] 
+    private int m_roundsLimit = 5;
+    
+    [SerializeField] 
     private Transform m_spawnPointEnemy;
     
     [SerializeField] 
@@ -17,15 +20,10 @@ public class Arena : MonoBehaviour
     
     private Enemy m_enemy;
     private Hero m_hero;
-    private int m_count = 0;
 
     private void Awake()
     {
-        var hero = Instantiate(m_prefabHero, m_spawnPointHero.position,  Quaternion.identity);
-        var enemy = Instantiate(m_prefabEnemy, m_spawnPointEnemy.position, Quaternion.identity);
-
-        m_enemy = enemy.GetComponent<Enemy>();
-        m_hero = hero.GetComponent<Hero>();
+        InstantiateCharacters();
     }
 
     public void Start()
@@ -39,14 +37,18 @@ public class Arena : MonoBehaviour
         
         yield return new WaitForSeconds(1.5f);
         
-        while (!m_enemy.IsDead() || !m_hero.IsDead())
+        int currentRound = 0;
+        
+        while ((!m_enemy.IsDead() || !m_hero.IsDead()) && m_roundsLimit > currentRound)
         {
+            currentRound++;
             m_hero.Fight();
             
             yield return new WaitForSeconds(1.25f);
 
             if (m_enemy.IsDead())
             {
+                PrintEndRound(currentRound);
                 break;
             }
             
@@ -56,10 +58,12 @@ public class Arena : MonoBehaviour
             
             if (m_hero.IsDead())
             {
+                PrintEndRound(currentRound);
                 break;
             }
-            m_count++;
-            PrintEndRound();
+
+            PrintEndRound(currentRound);
+            ResetCharacterStatistics();
         }
 
         PrintEndGame();
@@ -67,15 +71,16 @@ public class Arena : MonoBehaviour
 
     private void PrintStartRound()
     {
-        Debug.Log(m_hero.currentTypeHeroFigther + " (" + m_hero.TakeHP() + " HP) против " + m_enemy.currentTypeEnemyFigther
-                  + " (" + m_enemy.TakeHP() + " HP)");
+        Debug.Log(m_hero.currentTypeHeroFigther + " (" + m_hero.TakeHP() + " HP) против " + 
+                  m_enemy.currentTypeEnemyFigther + " (" + m_enemy.TakeHP() + " HP)");
     }
 
-    private void PrintEndRound()
+    private void PrintEndRound(int currentRound)
     {
-        Debug.Log("Раунд " + m_count + " : " + m_hero.currentTypeHeroFigther + " наносит "
-                  + m_hero.TakeDamage() + ", у противника " + m_enemy.TakeHP() + " HP; " + m_enemy.currentTypeEnemyFigther
-                  + " наносит " + m_enemy.TakeDamage() + " у героя " + m_hero.TakeHP() + " HP");
+        Debug.Log("Раунд " + currentRound + " : " + m_hero.currentTypeHeroFigther + " наносит "
+                  + m_hero.takeDamage + ", у противника " + Mathf.Max(0, m_enemy.TakeHP()) + " HP; " + 
+                  m_enemy.currentTypeEnemyFigther + " наносит " + m_enemy.takeDamage + " у героя " + 
+                  Mathf.Max(m_hero.TakeHP()) + " HP");
     }
 
     private void PrintEndGame()
@@ -88,5 +93,20 @@ public class Arena : MonoBehaviour
         {
             Debug.Log("Враг победил! У него осталось  " + m_hero.TakeHP() + " HP");
         }
+    }
+
+    private void ResetCharacterStatistics()
+    {
+        m_enemy.takeDamage = 0;
+        m_hero.takeDamage = 0;
+    }
+
+    private void InstantiateCharacters()
+    {
+        var hero = Instantiate(m_prefabHero, m_spawnPointHero.position,  Quaternion.identity);
+        var enemy = Instantiate(m_prefabEnemy, m_spawnPointEnemy.position, Quaternion.identity);
+
+        m_enemy = enemy.GetComponent<Enemy>();
+        m_hero = hero.GetComponent<Hero>();
     }
 }

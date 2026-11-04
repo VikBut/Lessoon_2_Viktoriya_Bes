@@ -17,21 +17,11 @@ public class CharacterTask4
     public CharacterTask4(string name, int armor, MagicType mTargetElementType)
     {
         Name = string.IsNullOrEmpty(name) ? "Unknown" : name;
-        this.m_armor = Mathf.Max(armor, 0);
-        this.m_targetElementType = mTargetElementType;
+        m_armor = Mathf.Max(armor, 0);
+        m_targetElementType = mTargetElementType;
     }
     
-    public void Heal(int amount)
-    {
-        if (amount <= 0)
-        {
-            return;
-        }
-
-        Health = Mathf.Clamp(Health + amount, 0, MaxHealth);
-    }
-    
-    public void TakeDamage(int damage, MagicType weaponElement, float criticalChance)
+    public void TakeDamage(int damage, MagicType weaponElement)
     {
         if (damage <= 0 || !IsAlive) 
         {
@@ -50,7 +40,8 @@ public class CharacterTask4
         {
             damageReceived = 0;
         }
-        else if ((weaponElement == MagicType.Fire && m_targetElementType == MagicType.Ice) || (weaponElement == MagicType.Ice && m_targetElementType == MagicType.Fire))
+        else if ((weaponElement == MagicType.Fire && m_targetElementType == MagicType.Ice) || 
+                 (weaponElement == MagicType.Ice && m_targetElementType == MagicType.Fire))
         {
             damageReceived = Mathf.FloorToInt(damageReceived * MagicDamage);
         }
@@ -70,6 +61,6 @@ public class CharacterTask4
     {
         Debug.Log(Name + " атакует " + target.Name + " с оружием " + weapon.weaponName);
         int totalDamage = baseDamage + weapon.damage;
-        target.TakeDamage(totalDamage, weapon.weaponType, ChanceCriticalDamage);
+        target.TakeDamage(totalDamage, weapon.weaponType);
     }
 }
