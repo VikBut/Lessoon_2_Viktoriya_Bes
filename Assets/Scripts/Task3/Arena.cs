@@ -1,25 +1,31 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
 public class Arena : MonoBehaviour
 {
-    private Enemy _enemy;
-    private Hero _hero;
-    [SerializeField] private Transform _spawnPointEnemy;
-    [SerializeField] private Transform _spawnPointHero;
-    [SerializeField] private GameObject _prefabHero;
-    [SerializeField] private GameObject _prefabEnemy;
+    [SerializeField] 
+    private Transform m_spawnPointEnemy;
     
-    private int count = 0;
+    [SerializeField] 
+    private Transform m_spawnPointHero;
+    
+    [SerializeField] 
+    private GameObject m_prefabHero;
+    
+    [SerializeField] 
+    private GameObject m_prefabEnemy;
+    
+    private Enemy m_enemy;
+    private Hero m_hero;
+    private int m_count = 0;
 
     private void Awake()
     {
-        var hero = Instantiate(_prefabHero, _spawnPointHero.position,  Quaternion.identity);
-        var enemy = Instantiate(_prefabEnemy, _spawnPointEnemy.position, Quaternion.identity);
+        var hero = Instantiate(m_prefabHero, m_spawnPointHero.position,  Quaternion.identity);
+        var enemy = Instantiate(m_prefabEnemy, m_spawnPointEnemy.position, Quaternion.identity);
 
-        _enemy = enemy.GetComponent<Enemy>();
-        _hero = hero.GetComponent<Hero>();
+        m_enemy = enemy.GetComponent<Enemy>();
+        m_hero = hero.GetComponent<Hero>();
     }
 
     public void Start()
@@ -33,26 +39,26 @@ public class Arena : MonoBehaviour
         
         yield return new WaitForSeconds(1.5f);
         
-        while (!_enemy.IsDead() || !_hero.IsDead())
+        while (!m_enemy.IsDead() || !m_hero.IsDead())
         {
-            _hero.Fight();
+            m_hero.Fight();
             
             yield return new WaitForSeconds(1.25f);
 
-            if (_enemy.IsDead())
+            if (m_enemy.IsDead())
             {
                 break;
             }
             
-            _enemy.Fight();
+            m_enemy.Fight();
             
             yield return new WaitForSeconds(1.25f);
             
-            if (_hero.IsDead())
+            if (m_hero.IsDead())
             {
                 break;
             }
-            count++;
+            m_count++;
             PrintEndRound();
         }
 
@@ -61,25 +67,26 @@ public class Arena : MonoBehaviour
 
     private void PrintStartRound()
     {
-        Debug.Log(_hero.currentTypeHeroFigther + " (" + _hero.TakeHP() + " HP) против " + _enemy.currentTypeEnemyFigther + " (" + _enemy.TakeHP() + " HP)");
+        Debug.Log(m_hero.currentTypeHeroFigther + " (" + m_hero.TakeHP() + " HP) против " + m_enemy.currentTypeEnemyFigther
+                  + " (" + m_enemy.TakeHP() + " HP)");
     }
 
     private void PrintEndRound()
     {
-        Debug.Log("Раунд " + count + " : " + _hero.currentTypeHeroFigther + " наносит "
-                  + _hero.TakeDamage() + ", у противника " + _enemy.TakeHP() + " HP; " + _enemy.currentTypeEnemyFigther
-                  + " наносит " + _enemy.TakeDamage() + " у героя " + _hero.TakeHP() + " HP");
+        Debug.Log("Раунд " + m_count + " : " + m_hero.currentTypeHeroFigther + " наносит "
+                  + m_hero.TakeDamage() + ", у противника " + m_enemy.TakeHP() + " HP; " + m_enemy.currentTypeEnemyFigther
+                  + " наносит " + m_enemy.TakeDamage() + " у героя " + m_hero.TakeHP() + " HP");
     }
 
     private void PrintEndGame()
     {
-        if (_enemy.IsDead())
+        if (m_enemy.IsDead())
         {
-            Debug.Log("Герой победил! У него осталось " + _hero.TakeHP() + " HP");
+            Debug.Log("Герой победил! У него осталось " + m_hero.TakeHP() + " HP");
         }
         else
         {
-            Debug.Log("Враг победил! У него осталось  " + _hero.TakeHP() + " HP");
+            Debug.Log("Враг победил! У него осталось  " + m_hero.TakeHP() + " HP");
         }
     }
 }

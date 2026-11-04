@@ -4,12 +4,13 @@ using UnityEngine.UI;
 
 public class Hero : Character
 {
-    private Color colorA = Color.orange;
-    private Color colorB = Color.blue;
+    private Color m_colorA = Color.orange;
+    private Color m_colorB = Color.blue;
+    private int m_enemyDamage = 0;
+    
     public HeroFighterType currentTypeHeroFigther;
     public Slider healthSlider;
-    private int enemyDamage = 0;
-
+    
     void Awake()
     {
         material = GetComponent<Renderer>().material;
@@ -18,17 +19,18 @@ public class Hero : Character
         
         if (currentTypeHeroFigther == HeroFighterType.Mage)
         {
-            material.color = colorB;
+            material.color = m_colorB;
             healthPoint = 130;
         }
         else if (currentTypeHeroFigther == HeroFighterType.Warrior)
         {
-            material.color = colorA;
+            material.color = m_colorA;
             healthPoint = 100;
         }
         
         healthSlider.maxValue = healthPoint;
     }
+    
     void Update()
     {
         healthSlider.value = healthPoint;
@@ -62,7 +64,7 @@ public class Hero : Character
 
     public int TakeDamage()
     {
-        return enemyDamage;
+        return m_enemyDamage;
     }
     
     public int TakeHP()
@@ -93,12 +95,10 @@ public class Hero : Character
             damage = warRandom;
             healthPoint -= damage;
         }
-        
     }
     
     private void OnTriggerEnter(Collider other)
     {
-        
         if (IsDead())
         {
             return;
@@ -109,16 +109,15 @@ public class Hero : Character
         
             if (currentTypeHeroFigther == HeroFighterType.Mage)
             { 
-                enemyDamage = Random.Range(6, 12);
+                m_enemyDamage = Random.Range(6, 12);
             }
             else if (currentTypeHeroFigther == HeroFighterType.Warrior)
             {
-                enemyDamage = Random.Range(10, 16);
+                m_enemyDamage = Random.Range(10, 16);
             }
             
-            other.GetComponent<Enemy>().GetDamage(enemyDamage);
-            Debug.Log("Атака врага, урон:  " + enemyDamage);
+            other.GetComponent<Enemy>().GetDamage(m_enemyDamage);
+            Debug.Log("Атака врага, урон:  " + m_enemyDamage);
         }
     }
-
 }

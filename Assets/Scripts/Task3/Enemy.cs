@@ -4,12 +4,14 @@ using UnityEngine.UI;
 
 public class Enemy : Character
 {
+    private int m_heroDamage = 0;
+    
     protected Color colorD = Color.burlywood;
     protected Color colorF = Color.darkOliveGreen;
     protected Color colorG = Color.sienna;
+    
     public EnemyFighterType currentTypeEnemyFigther;
     public Slider healthSlider;
-    private int heroDamage = 0;
 
     void Awake()
     {
@@ -67,7 +69,7 @@ public class Enemy : Character
     
     public int TakeDamage()
     {
-        return heroDamage;
+        return m_heroDamage;
     }
     
     public int TakeHP()
@@ -93,23 +95,21 @@ public class Enemy : Character
         
         if (other.CompareTag("Hero"))
         {
-        
             if (currentTypeEnemyFigther == EnemyFighterType.Goblin)
             {
-                heroDamage = Random.Range(10, 16);
+                m_heroDamage = Random.Range(10, 16);
             }
             else if (currentTypeEnemyFigther == EnemyFighterType.Orc)
             {
-                heroDamage = Random.Range(5, 10);
+                m_heroDamage = Random.Range(5, 10);
             }
             else if (currentTypeEnemyFigther == EnemyFighterType.Troll)
             {
-                heroDamage = Random.Range(8, 12);
+                m_heroDamage = Random.Range(8, 12);
             }
             
-            other.GetComponent<Hero>().GetDamage(heroDamage);
-            Debug.Log("Атака героя, урон:  " + heroDamage);
+            other.GetComponent<Hero>().GetDamage(m_heroDamage);
+            Debug.Log("Атака героя, урон:  " + m_heroDamage);
         }
     }
-
 }

@@ -8,10 +8,9 @@ public enum ItemType
 
 public class ItemScriptableObject : ScriptableObject
 {
+    public ItemType itemType;
    public string itemName;
    public int maxAmount;
    public GameObject itenPrefab;
    public Sprite icon;
-   public ItemType itemType;
-   
 }
