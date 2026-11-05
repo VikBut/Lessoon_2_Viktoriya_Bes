@@ -67,13 +67,13 @@ public class Arena : MonoBehaviour
 
     private void PrintStartRound()
     {
-        Debug.Log(m_hero.currentTypeHeroFigther + " (" + m_hero.TakeHP() + " HP) против " + m_enemy.currentTypeEnemyFigther
+        Debug.Log(m_hero.currentTypeHeroFigther + " (" + m_hero.TakeHP() + " HP) против " + m_enemy.currentTypeEnemyFigther  // $""
                   + " (" + m_enemy.TakeHP() + " HP)");
     }
 
     private void PrintEndRound()
     {
-        Debug.Log("Раунд " + m_count + " : " + m_hero.currentTypeHeroFigther + " наносит "
+        Debug.Log("Раунд " + m_count + " : " + m_hero.currentTypeHeroFigther + " наносит "    // $""
                   + m_hero.TakeDamage() + ", у противника " + m_enemy.TakeHP() + " HP; " + m_enemy.currentTypeEnemyFigther
                   + " наносит " + m_enemy.TakeDamage() + " у героя " + m_hero.TakeHP() + " HP");
     }
@@ -82,11 +82,11 @@ public class Arena : MonoBehaviour
     {
         if (m_enemy.IsDead())
         {
-            Debug.Log("Герой победил! У него осталось " + m_hero.TakeHP() + " HP");
+            Debug.Log("Герой победил! У него осталось " + m_hero.TakeHP() + " HP"); // $""
         }
         else
         {
-            Debug.Log("Враг победил! У него осталось  " + m_hero.TakeHP() + " HP");
+            Debug.Log("Враг победил! У него осталось  " + m_hero.TakeHP() + " HP"); // $""
         }
     }
 }
