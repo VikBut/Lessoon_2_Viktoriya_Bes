@@ -7,7 +7,4 @@ public class Character : MonoBehaviour
     
     protected Material material;
     protected int healthPoint = 100;
-    protected float randomValue;
-    protected Color defaultColor;
-    protected Color colorC;
 }
