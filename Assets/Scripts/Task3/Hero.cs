@@ -57,7 +57,7 @@ public class Hero : Character
         return healthPoint <= 0;
     }
     
-    public void StartEffect()
+    public void StartEffect() // Вроде не используется
     {
         StartCoroutine(ColorDamage());
     }
