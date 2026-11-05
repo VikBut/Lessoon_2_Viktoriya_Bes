@@ -4,9 +4,9 @@ using UnityEngine.UI;
 
 public class Hero : Character
 {
-    private Color m_colorA = Color.orange;
-    private Color m_colorB = Color.blue;
-    private int m_enemyDamage = 0;
+    private Color m_colorA = Color.orange; // Названия цветов
+    private Color m_colorB = Color.blue; // Тоже
+    private int m_enemyDamage = 0; // Опять же как с файлом Enemy, скорее всего не урон противника, а урон по противнику
     
     public HeroFighterType currentTypeHeroFigther;
     public Slider healthSlider;
@@ -62,12 +62,12 @@ public class Hero : Character
         StartCoroutine(ColorDamage());
     }
 
-    public int TakeDamage()
+    public int TakeDamage() // Возвращает число, а по названию наносит урон
     {
         return m_enemyDamage;
     }
     
-    public int TakeHP()
+    public int TakeHP() // Тоже
     {
         return healthPoint;
     }
@@ -86,7 +86,7 @@ public class Hero : Character
         if (currentTypeHeroFigther == HeroFighterType.Mage)
         {
             int magRandom = Random.Range(10, 16);
-            damage = magRandom;
+            damage = magRandom; // Можно просто сделать damage = Random.Range
             healthPoint -= damage;
         }
         else if (currentTypeHeroFigther == HeroFighterType.Warrior)
@@ -117,7 +117,7 @@ public class Hero : Character
             }
             
             other.GetComponent<Enemy>().GetDamage(m_enemyDamage);
-            Debug.Log("Атака врага, урон:  " + m_enemyDamage);
+            Debug.Log("Атака врага, урон:  " + m_enemyDamage); //$""
         }
     }
 }
