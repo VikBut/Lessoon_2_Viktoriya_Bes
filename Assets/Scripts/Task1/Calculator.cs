@@ -12,7 +12,7 @@ public class Calculator : MonoBehaviour
     private EnemyScript m_damageEnd;
     
     [SerializeField] 
-    private int m_maxRounds; // не используется в коде
+    private int m_maxRounds;
     
     private void OnTriggerExit(Collider other)
     {
@@ -20,22 +20,22 @@ public class Calculator : MonoBehaviour
         {
             count++;
 
-            if (m_criticalDamage.isCritical == true) // можно просто  if (m_criticalDamage.isCritical) сработает с true
+            if (m_criticalDamage.isCritical == true)
             {
-                if (m_criticalDamage.elementForCalc == true) // Тоже сравнение с true
+                if (m_criticalDamage.elementForCalc == true)
                 {
-                    Debug.Log("Удар " + count + ", урон: " + m_damageEnd.lastDamage + "\n" +  // Тут вроде как желательно делать интерполяцию ($"...{переменная}...}
+                    Debug.Log("Удар " + count + ", урон: " + m_damageEnd.lastDamage + "\n" +
                               "Критический урон: x2 и урон от стихии x1.5");
                 }
                 else
                 {
-                    Debug.Log("Удар " + count + ", урон: " + m_damageEnd.lastDamage + "\n" + // Дальше тоже
+                    Debug.Log("Удар " + count + ", урон: " + m_damageEnd.lastDamage + "\n" +
                               "Критический урон: x2 и урона от стихии нет");
                 }
             }
             else
             {
-                if (m_criticalDamage.elementForCalc == true) // Сравнение с true
+                if (m_criticalDamage.elementForCalc == true)
                 {
                     Debug.Log("Удар " + count + ", урон: " + m_damageEnd.lastDamage + "\n" +
                               "Критический урон: нет и урон от стихии x1.5");

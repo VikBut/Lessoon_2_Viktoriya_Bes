@@ -802,12 +802,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8a670ca37962cd4b946833171de800a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  armor: 4
-  typeGun: {fileID: 1005266173}
+  m_typeGun: {fileID: 1005266173}
+  m_armor: 4
+  currentElementEnemy: 1
   animator: {fileID: 1004639024}
   healthSlider: {fileID: 1729218537}
-  currentElementEnemy: 0
-  lastDamage: 0
+  lastDamage: 12
 --- !u!95 &1004639024
 Animator:
   serializedVersion: 7
@@ -985,9 +985,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60bcf75ffbe6e0a42abc02bbbcf485bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ElementsGun
-  damageAmount: 10
+  m_calculator: {fileID: 1005266174}
   currentElement: 0
-  amountForCalc: 0
+  amountForCalc: 2
+  damageAmount: 10
 --- !u!114 &1005266174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1000,8 +1001,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98d729aa82e6a924cba9c9797779c1f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Calculator
-  _criticalDamage: {fileID: 1005266173}
-  _damageEnd: {fileID: 1004639020}
+  m_criticalDamage: {fileID: 1005266173}
+  m_damageEnd: {fileID: 1004639020}
+  m_maxRounds: 5
 --- !u!1 &1103810494
 GameObject:
   m_ObjectHideFlags: 0

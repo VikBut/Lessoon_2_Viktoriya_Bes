@@ -1,24 +1,32 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Enemy : Character
 {
+    private Color colorD = Color.burlywood;
+    private Color colorF = Color.darkOliveGreen;
+    private Color colorG = Color.sienna;
     private int m_heroDamage = 0;
-    
-    protected Color colorD = Color.burlywood;
-    protected Color colorF = Color.darkOliveGreen;
-    protected Color colorG = Color.sienna;
     
     public EnemyFighterType currentTypeEnemyFigther;
     public Slider healthSlider;
+    
+    public int takeDamage
+    {
+        get
+        {
+            return m_heroDamage;
+        }
+        set
+        {
+            m_heroDamage = value;
+        }
+    }
 
-    void Awake()
+    private void Awake()
     {
         material = GetComponent<Renderer>().material;
-        defaultColor = material.color;
-        colorC = defaultColor;
-        
+
         if (currentTypeEnemyFigther == EnemyFighterType.Goblin)
         {
             material.color = colorD;
@@ -37,6 +45,7 @@ public class Enemy : Character
         
         healthSlider.maxValue = healthPoint;
     }
+    
     void Update()
     {
         healthSlider.value = healthPoint;
@@ -62,30 +71,11 @@ public class Enemy : Character
         healthPoint -= damage;
     }
     
-    public void StartEffect()
-    {
-        StartCoroutine(ColorDamage());
-    }
-    
-    public int TakeDamage()
-    {
-        return m_heroDamage;
-    }
-    
     public int TakeHP()
     {
         return healthPoint;
     }
-
-    private IEnumerator ColorDamage()
-    {
-        material.color = Color.red;
-
-        yield return new WaitForSeconds(0.5f);
-
-        material.color = defaultColor;
-    }
-
+    
     private void OnTriggerEnter(Collider other)
     {
         if (IsDead())
@@ -109,7 +99,6 @@ public class Enemy : Character
             }
             
             other.GetComponent<Hero>().GetDamage(m_heroDamage);
-            Debug.Log("Атака героя, урон:  " + m_heroDamage);
         }
     }
 }

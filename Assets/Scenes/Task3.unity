@@ -148,6 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c65375dc622b424d937695a3a9b5ade, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Arena
+  m_roundsLimit: 5
   m_spawnPointEnemy: {fileID: 1554560482}
   m_spawnPointHero: {fileID: 1489416050}
   m_prefabHero: {fileID: 6221382682597520541, guid: 6a7d723c00b3a1a48a13a9c3ba5dd499, type: 3}
