@@ -18,7 +18,7 @@ public class Slot : MonoBehaviour,
     private void Awake()
     {
         iconGameObject = transform.GetChild(0).gameObject;
-        itemAmountText = transform.GetChild(1).GetComponent<TMP_Text>();
+        itemAmountText = transform.GetChild(1).GetComponent<TMP_Text>(); // Если структура изменится, всё полетит индексацию лучше заменить
     }
     
     public void SetIcon(Sprite icon)
