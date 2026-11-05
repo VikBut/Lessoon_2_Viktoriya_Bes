@@ -44,7 +44,7 @@ public class Slot : MonoBehaviour,
                 isEmpty = true;
                 itemAmountText.text = "";
             
-                Image icon = iconGameObject.GetComponent<Image>();
+                Image icon = iconGameObject.GetComponent<Image>(); // Стоит уточнить переменную, например iconImage
                 icon.sprite = null;
                 icon.color = m_defaultColor;
                 
