@@ -39,7 +39,7 @@ public class Arena : MonoBehaviour
         
         yield return new WaitForSeconds(1.5f);
         
-        while (!m_enemy.IsDead() || !m_hero.IsDead())
+        while (!m_enemy.IsDead() || !m_hero.IsDead()) // Тут надо использовать И а не ИЛИ
         {
             m_hero.Fight();
             
