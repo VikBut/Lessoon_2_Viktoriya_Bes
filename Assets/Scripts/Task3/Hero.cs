@@ -4,8 +4,8 @@ using UnityEngine.UI;
 
 public class Hero : Character
 {
-    private Color m_colorA = Color.orange;
-    private Color m_colorB = Color.blue;
+    private Color m_colorFire = Color.orange;
+    private Color m_colorIce = Color.blue;
     private int m_enemyDamage = 0;
     
     public HeroFighterType currentTypeHeroFigther;
@@ -29,12 +29,12 @@ public class Hero : Character
 
         if (currentTypeHeroFigther == HeroFighterType.Mage)
         {
-            material.color = m_colorB;
+            material.color = m_colorIce;
             healthPoint = 130;
         }
         else if (currentTypeHeroFigther == HeroFighterType.Warrior)
         {
-            material.color = m_colorA;
+            material.color = m_colorFire;
             healthPoint = 100;
         }
         

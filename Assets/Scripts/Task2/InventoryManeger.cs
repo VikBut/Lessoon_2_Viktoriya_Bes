@@ -50,10 +50,10 @@ public class InventoryManeger  : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.R))
         {
-            int weaponInt = 0;
-            int foodInt = 0;
-            int potionInt = 0;
-            int count = 0;
+            int weaponCount = 0;
+            int foodCount = 0;
+            int potionCount = 0;
+            int capacity = 0;
             int countIn = 0;
             
             int weaponUnique = 0;
@@ -62,52 +62,52 @@ public class InventoryManeger  : MonoBehaviour
 
             foreach (Slot slot in slots)
             {
-                if (slot.isEmpty == false && slot.item != null)
+                if (!slot.isEmpty && slot.item != null)
                 {
                     if (slot.item.itemType == ItemType.Food)
                     {
-                        foodInt += slot.amount;
+                        foodCount += slot.amount;
                         foodUnique = 1;
                     }
                     else if (slot.item.itemType == ItemType.Weapon)
                     {
-                        weaponInt += slot.amount;
+                        weaponCount += slot.amount;
                         weaponUnique = 1;
                     }
                     else if (slot.item.itemType == ItemType.Potions)
                     {
-                        potionInt += slot.amount;
+                        potionCount += slot.amount;
                         potionUnique = 1;
                     }
                     
                     countIn++;
                 } 
                 
-                count++;
+                capacity++;
             }
 
-            print("Кол-во еды в инвентаре: " + foodInt);
-            print("Кол-во оружия в инвентаре: " + weaponInt);
-            print("Кол-во зелий в инвентаре: " + potionInt);
-            print("Занято " + countIn + " ячейки/ячеек из " + count);
+            print($"Кол-во еды в инвентаре:  {foodCount}");
+            print($"Кол-во оружия в инвентаре:  {weaponCount}");
+            print($"Кол-во зелий в инвентаре:  {potionCount}");
+            print($"Занято {countIn} ячейки/ячеек из {capacity}");
 
             if (potionUnique == 1 || weaponUnique == 1 || foodUnique == 1)
             {
                 int allUnique = 0;
                 allUnique = potionUnique + weaponUnique + foodUnique;
-                print("Уникальных предметов: " + allUnique);
+                print($"Уникальных предметов: {allUnique}");
                 
             }
         }
     }
     
-    public bool AddItem(ItemScriptableObject _item, int _amount)
+    public bool AddItem(ItemScriptableObject item, int amount)
     {
         foreach (Slot slot in slots)
         {
-            if (slot.item == _item && (slot.amount + _amount) <= _item.maxAmount)
+            if (slot.item == item && (slot.amount + amount) <= item.maxAmount)
             {
-                slot.amount += _amount;
+                slot.amount += amount;
                 slot.itemAmountText.text = slot.amount.ToString();
                 return true;
             }
@@ -117,11 +117,11 @@ public class InventoryManeger  : MonoBehaviour
         {
             if (slot.isEmpty)
             {
-                slot.item = _item;
-                slot.amount += _amount;
+                slot.item = item;
+                slot.amount += amount;
                 slot.isEmpty = false;
-                slot.SetIcon(_item.icon);
-                slot.itemAmountText.text = _amount.ToString();
+                slot.SetIcon(item.icon);
+                slot.itemAmountText.text = amount.ToString();
                 return true;
             }
         }

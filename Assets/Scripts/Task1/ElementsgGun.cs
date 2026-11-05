@@ -8,9 +8,6 @@ public class ElementsGun : MonoBehaviour
     private const float MagicDamage = 1.5f;
     private const float ChanceCriticalDamage = 0.3f;
     
-    [SerializeField] 
-    private Calculator m_calculator;
-    
     private Material m_material;
     private Color m_colorA = Color.orange;
     private Color m_colorB = Color.blue;

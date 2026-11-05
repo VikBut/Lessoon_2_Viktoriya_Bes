@@ -32,6 +32,33 @@ public class GameManager : MonoBehaviour
     
     private void Start()
     {
+        FillingOutTheSheets();
+        
+        int count = Mathf.Min(m_heroes.Length, m_enemies.Length, m_weapons.Length);
+
+        for (int i = 0; i < count; i++)
+        {
+            m_heroes[i].Attack(m_baseDamage, m_weapons[i], m_enemies[i]);
+            Debug.Log(m_enemies[i].Name + " | Здоровье: " + m_enemies[i].Health);
+            
+            if (!m_enemies[i].IsAlive)
+            {
+                Debug.Log(m_enemies[i].Name + " умер");
+                continue;
+            }
+            
+            m_enemies[i].Attack(m_baseDamage, m_weapons[i], m_heroes[i]);
+            Debug.Log(m_heroes[i].Name + " | Здоровье: " + m_heroes[i].Health);
+
+            if (!m_heroes[i].IsAlive)
+            {
+                Debug.Log(m_heroes[i].Name + " умер");
+            }
+        }
+    }
+
+    private void FillingOutTheSheets()
+    {
         m_heroes = new CharacterTask4[m_heroNames.Length];
         m_enemies = new CharacterTask4[m_enemyNames.Length];
         m_weapons = new WeaponTask4[m_weaponNames.Length];
@@ -61,28 +88,6 @@ public class GameManager : MonoBehaviour
                 m_weaponDamages[i],
                 m_weaponMagicTypes[i]
             );
-        }
-        
-        int count = Mathf.Min(m_heroes.Length, m_enemies.Length, m_weapons.Length);
-
-        for (int i = 0; i < count; i++)
-        {
-            m_heroes[i].Attack(m_baseDamage, m_weapons[i], m_enemies[i]);
-            Debug.Log(m_enemies[i].Name + " | Здоровье: " + m_enemies[i].Health);
-            
-            if (!m_enemies[i].IsAlive)
-            {
-                Debug.Log(m_enemies[i].Name + " умер");
-                continue;
-            }
-            
-            m_enemies[i].Attack(m_baseDamage, m_weapons[i], m_heroes[i]);
-            Debug.Log(m_heroes[i].Name + " | Здоровье: " + m_heroes[i].Health);
-
-            if (!m_heroes[i].IsAlive)
-            {
-                Debug.Log(m_heroes[i].Name + " умер");
-            }
         }
     }
 }

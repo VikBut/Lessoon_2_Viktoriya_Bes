@@ -6,7 +6,7 @@ public class CharacterTask4
     private const float MagicDamage = 1.5f;
     private const int MaxHealth = 100;
     
-    private MagicType m_targetElementType;
+    private MagicType _targetElementType;
     private int m_armor = 3;
     
     public bool IsCritical { get; private set; }
@@ -14,11 +14,11 @@ public class CharacterTask4
     public int Health { get; private set; } = MaxHealth;
     public bool IsAlive => Health > 0;
     
-    public CharacterTask4(string name, int armor, MagicType mTargetElementType)
+    public CharacterTask4(string name, int armor, MagicType targetElementType)
     {
         Name = string.IsNullOrEmpty(name) ? "Unknown" : name;
         m_armor = Mathf.Max(armor, 0);
-        m_targetElementType = mTargetElementType;
+        _targetElementType = targetElementType;
     }
     
     public void TakeDamage(int damage, MagicType weaponElement)
@@ -32,16 +32,16 @@ public class CharacterTask4
         float randomFloat = Random.Range(0f, 1f);
         int damageReceived = Mathf.Max(1, damage - m_armor);
 
-        if (weaponElement == MagicType.None || m_targetElementType == MagicType.None)
+        if (weaponElement == MagicType.None || _targetElementType == MagicType.None)
         {
             Debug.Log("Стихии совпадают, урон не меняется");
         }
-        else if (weaponElement == m_targetElementType)
+        else if (weaponElement == _targetElementType)
         {
             damageReceived = 0;
         }
-        else if ((weaponElement == MagicType.Fire && m_targetElementType == MagicType.Ice) || 
-                 (weaponElement == MagicType.Ice && m_targetElementType == MagicType.Fire))
+        else if ((weaponElement == MagicType.Fire && _targetElementType == MagicType.Ice) || 
+                 (weaponElement == MagicType.Ice && _targetElementType == MagicType.Fire))
         {
             damageReceived = Mathf.FloorToInt(damageReceived * MagicDamage);
         }
@@ -54,12 +54,12 @@ public class CharacterTask4
         }
         
         Health = Mathf.Max(Health - damageReceived, 0);
-        Debug.Log(Name + " получил " + damageReceived + " урона");
+        Debug.Log($"{Name} получил {damageReceived} урона");
     }
 
     public void Attack(int baseDamage, WeaponTask4 weapon, CharacterTask4 target)
     {
-        Debug.Log(Name + " атакует " + target.Name + " с оружием " + weapon.weaponName);
+        Debug.Log($"{Name} атакует {target.Name} с оружием {weapon.weaponName}");
         int totalDamage = baseDamage + weapon.damage;
         target.TakeDamage(totalDamage, weapon.weaponType);
     }

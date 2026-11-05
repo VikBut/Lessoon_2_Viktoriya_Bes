@@ -44,16 +44,16 @@ public class Slot : MonoBehaviour,
                 isEmpty = true;
                 itemAmountText.text = "";
             
-                Image icon = iconGameObject.GetComponent<Image>();
-                icon.sprite = null;
-                icon.color = m_defaultColor;
+                Image iconImage = iconGameObject.GetComponent<Image>();
+                iconImage.sprite = null;
+                iconImage.color = m_defaultColor;
                 
                 Debug.Log("Все предмемты удалены");
             }
             else
             {
                 itemAmountText.text = amount.ToString();
-                Debug.Log("Предмет удален, осталось: " + amount);
+                Debug.Log($"Предмет удален, осталось: {amount}");
             }
         }
     }

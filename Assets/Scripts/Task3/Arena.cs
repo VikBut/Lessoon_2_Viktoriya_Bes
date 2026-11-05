@@ -71,27 +71,27 @@ public class Arena : MonoBehaviour
 
     private void PrintStartRound()
     {
-        Debug.Log(m_hero.currentTypeHeroFigther + " (" + m_hero.TakeHP() + " HP) против " + 
-                  m_enemy.currentTypeEnemyFigther + " (" + m_enemy.TakeHP() + " HP)");
+        Debug.Log($"{m_hero.currentTypeHeroFigther} ({m_hero.TakeHP()} HP) против " +
+                  $"{m_enemy.currentTypeEnemyFigther} ({m_enemy.TakeHP()} HP)");
     }
 
     private void PrintEndRound(int currentRound)
     {
-        Debug.Log("Раунд " + currentRound + " : " + m_hero.currentTypeHeroFigther + " наносит "
-                  + m_hero.takeDamage + ", у противника " + Mathf.Max(0, m_enemy.TakeHP()) + " HP; " + 
-                  m_enemy.currentTypeEnemyFigther + " наносит " + m_enemy.takeDamage + " у героя " + 
-                  Mathf.Max(m_hero.TakeHP()) + " HP");
+        Debug.Log($"Раунд " + currentRound + " : " + m_hero.currentTypeHeroFigther + " наносит "
+                   + m_hero.takeDamage + ", у противника " + Mathf.Max(0, m_enemy.TakeHP()) + " HP; " + 
+                   m_enemy.currentTypeEnemyFigther + " наносит " + m_enemy.takeDamage + " у героя " + 
+                   Mathf.Max(m_hero.TakeHP()) + " HP");
     }
 
     private void PrintEndGame()
     {
         if (m_enemy.IsDead())
         {
-            Debug.Log("Герой победил! У него осталось " + m_hero.TakeHP() + " HP");
+            Debug.Log($"Герой победил! У него осталось {m_hero.TakeHP()} HP");
         }
         else
         {
-            Debug.Log("Враг победил! У него осталось  " + m_hero.TakeHP() + " HP");
+            Debug.Log($"Враг победил! У него осталось {m_enemy.TakeHP()} HP");
         }
     }
 

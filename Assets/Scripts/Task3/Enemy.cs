@@ -3,9 +3,9 @@ using UnityEngine.UI;
 
 public class Enemy : Character
 {
-    private Color colorD = Color.burlywood;
-    private Color colorF = Color.darkOliveGreen;
-    private Color colorG = Color.sienna;
+    private Color colorGoblin = Color.burlywood;
+    private Color colorOrc = Color.darkOliveGreen;
+    private Color colorTroll = Color.sienna;
     private int m_heroDamage = 0;
     
     public EnemyFighterType currentTypeEnemyFigther;
@@ -29,17 +29,17 @@ public class Enemy : Character
 
         if (currentTypeEnemyFigther == EnemyFighterType.Goblin)
         {
-            material.color = colorD;
+            material.color = colorGoblin;
             healthPoint = 50;
         }
         else if (currentTypeEnemyFigther == EnemyFighterType.Orc)
         {
-            material.color = colorF;
+            material.color = colorOrc;
             healthPoint = 80;
         }
         else if (currentTypeEnemyFigther == EnemyFighterType.Troll)
         {
-            material.color = colorG;
+            material.color = colorTroll;
             healthPoint = 140;
         }
         

@@ -6,7 +6,7 @@ public class AttackScript : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))  // Старая Input-система
+        if (Input.GetButtonDown("Fire1"))  // Старая Input-система, пока не буду на новую переходить 
         {
             animator.SetBool("attack", true);
             

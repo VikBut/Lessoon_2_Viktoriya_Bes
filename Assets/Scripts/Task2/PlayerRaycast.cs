@@ -6,14 +6,14 @@ public class PlayerRaycast : MonoBehaviour
     private Camera m_camera;
     
     [SerializeField]
-    private LayerMask _layerMask;
+    private LayerMask m_layerMask;
     
     [SerializeField]
-    private float _raycastDistance = 1f;
+    private float m_raycastDistance = 1f;
 
     [Header("Inventory")]
     [SerializeField] 
-    private InventoryManeger _inventoryManeger;
+    private InventoryManeger m_inventoryManeger;
 
     void Update()
     {
@@ -21,13 +21,13 @@ public class PlayerRaycast : MonoBehaviour
         {
             RaycastHit hit;
 
-            if (Physics.Raycast(m_camera.transform.position, m_camera.transform.forward, out hit, _raycastDistance, _layerMask))
+            if (Physics.Raycast(m_camera.transform.position, m_camera.transform.forward, out hit, m_raycastDistance, m_layerMask))
             {
-                if (hit.collider.TryGetComponent(out Item _item))
+                if (hit.collider.TryGetComponent(out Item item))
                 {
-                    if (_inventoryManeger.AddItem(_item.item, _item.amount))
+                    if (m_inventoryManeger.AddItem(item.item, item.amount))
                     {
-                        Destroy(_item.gameObject);
+                        Destroy(item.gameObject);
                     }
                 }
             }
@@ -38,7 +38,7 @@ public class PlayerRaycast : MonoBehaviour
     {
         if (m_camera != null)
         {
-            Debug.DrawRay(m_camera.transform.position, m_camera.transform.forward * _raycastDistance, Color.red);
+            Debug.DrawRay(m_camera.transform.position, m_camera.transform.forward * m_raycastDistance, Color.red);
         }
     }
 }

@@ -11,9 +11,6 @@ public class Calculator : MonoBehaviour
     [SerializeField] 
     private EnemyScript m_damageEnd;
     
-    [SerializeField] 
-    private int m_maxRounds;
-    
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Enemy"))

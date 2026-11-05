@@ -6,16 +6,13 @@ namespace Task1
 {
     public class EnemyScript : MonoBehaviour
     {
-        [SerializeField] 
-        private ElementsGun m_typeGun; 
-        
         [SerializeField]
         [Range(0, 99)]
         private int m_armor;
         
-        private Color m_colorA = Color.orange;
-        private Color m_colorB = Color.blue;
-        private Color m_colorC;
+        private Color m_colorFire = Color.orange;
+        private Color m_colorIce = Color.blue;
+        private Color m_colorBase;
         private Color m_defaultColorEnemy;
         private Material m_material;
         private int m_hp = 100;
@@ -30,7 +27,7 @@ namespace Task1
         {
             m_material = GetComponent<Renderer>().material;
             m_defaultColorEnemy = m_material.color;
-            m_colorC = m_defaultColorEnemy;
+            m_colorBase = m_defaultColorEnemy;
         }
         void Update()
         {
@@ -43,15 +40,15 @@ namespace Task1
             {
                 case MagicType.Fire:
                 {
-                    return m_colorA;
+                    return m_colorFire;
                 }
                 case MagicType.Ice:
                 {
-                    return m_colorB;
+                    return m_colorIce;
                 }
                 case MagicType.None:
                 {
-                    return m_colorC;
+                    return m_colorBase;
                 }
             }
 
