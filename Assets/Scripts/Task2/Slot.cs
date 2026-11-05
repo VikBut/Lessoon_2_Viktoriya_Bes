@@ -53,7 +53,7 @@ public class Slot : MonoBehaviour,
             else
             {
                 itemAmountText.text = amount.ToString();
-                Debug.Log("Предмет удален, осталось: " + amount);
+                Debug.Log("Предмет удален, осталось: " + amount); // $""
             }
         }
     }
