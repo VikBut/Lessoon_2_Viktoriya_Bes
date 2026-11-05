@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
             );
         }
         
-        int count = Mathf.Min(m_heroes.Length, m_enemies.Length, m_weapons.Length); // Слишком общее название "количество", указать количество чего
+        int count = Mathf.Min(m_heroes.Length, m_enemies.Length, m_weapons.Length); // Слишком общее название "количество", указать количество чего; Мало проверок: если один из m_enemyArmors, m_enemyMagicTypes, m_weaponDamages, m_weaponMagicTypes короче будет выход за пределы индексов. 
 
         for (int i = 0; i < count; i++)
         {
@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
                 continue;
             }
             
-            m_enemies[i].Attack(m_baseDamage, m_weapons[i], m_heroes[i]);
+            m_enemies[i].Attack(m_baseDamage, m_weapons[i], m_heroes[i]); // Скорее всего после смерти сможет пройти урон, нужна проверка
             Debug.Log(m_heroes[i].Name + " | Здоровье: " + m_heroes[i].Health); //$""
 
             if (!m_heroes[i].IsAlive)
