@@ -5,11 +5,11 @@ using Random = UnityEngine.Random;
 
 public class ElementsGun : MonoBehaviour
 {
-    private const float MagicDamage = 1.5f;  // Для констант вроде префикс c_ и тут наверно не просто магический урон а именно коэфицинент для умножения
+    private const float MagicDamage = 1.5f;
     private const float ChanceCriticalDamage = 0.3f;
     
     [SerializeField] 
-    private Calculator m_calculator; // вроде нигде не испоьзуется
+    private Calculator m_calculator;
     
     private Material m_material;
     private Color m_colorA = Color.orange;
@@ -79,7 +79,7 @@ public class ElementsGun : MonoBehaviour
             if (currentElement == MagicType.None || enemyMagicType == MagicType.None)
             {
                 CriticalDamage(damageReceived);
-                enemyScript.TakeDamage(amountForCalc); // Тут наверно стоит использовать не enemyScript а просто enemy, а то будто скрипту дамаг наносит
+                enemyScript.TakeDamage(amountForCalc);
             }
             else if (currentElement != enemyMagicType)
             {
