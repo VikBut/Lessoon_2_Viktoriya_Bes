@@ -6,7 +6,7 @@ public class Calculator : MonoBehaviour
     private int count = 0;
     
     [SerializeField] 
-    private ElementsGun m_criticalDamage;
+    private ElementsGun m_criticalDamage; // Нет проверки на null(если не назанчен в инспекторе)
     
     [SerializeField] 
     private EnemyScript m_damageEnd;
@@ -14,7 +14,7 @@ public class Calculator : MonoBehaviour
     [SerializeField] 
     private int m_maxRounds; // не используется в коде
     
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider other) // тут наверно OnTriggerEnter, хоть и не критично наверно, но тут выполняется условие только тогда, когда он уже выходит с удара, а не наносит удар
     {
         if (other.CompareTag("Enemy"))
         {
