@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
             );
         }
 
-        for (int i = 0; i < m_weapons.Length; i++) // Тут попходие циклы, возможно вынести их в отдельный метод и нет проверки на заполненение (Указаны ли в инспекторе)
+        for (int i = 0; i < m_weapons.Length; i++) // Тут попходие циклы, возможно вынести их в отдельный метод + нет проверки на заполненение массивов  в инспекторе
         {
             m_weapons[i] = new WeaponTask4(
                 m_weaponNames[i],
