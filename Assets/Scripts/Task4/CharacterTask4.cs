@@ -21,7 +21,7 @@ public class CharacterTask4
         this.m_targetElementType = mTargetElementType;
     }
     
-    public void Heal(int amount)
+    public void Heal(int amount) // С помощью этого метода скорее всего можно воскресить персонажа, нет проверки на смерть
     {
         if (amount <= 0)
         {
@@ -31,7 +31,7 @@ public class CharacterTask4
         Health = Mathf.Clamp(Health + amount, 0, MaxHealth);
     }
     
-    public void TakeDamage(int damage, MagicType weaponElement, float criticalChance)
+    public void TakeDamage(int damage, MagicType weaponElement, float criticalChance) // criticalChance вроде не используется
     {
         if (damage <= 0 || !IsAlive) 
         {
@@ -42,7 +42,7 @@ public class CharacterTask4
         float randomFloat = Random.Range(0f, 1f);
         int damageReceived = Mathf.Max(1, damage - m_armor);
 
-        if (weaponElement == MagicType.None || m_targetElementType == MagicType.None)
+        if (weaponElement == MagicType.None || m_targetElementType == MagicType.None) // Тут они не совпадают, а пустые
         {
             Debug.Log("Стихии совпадают, урон не меняется");
         }
