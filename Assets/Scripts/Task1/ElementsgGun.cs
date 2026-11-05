@@ -19,7 +19,7 @@ public class ElementsGun : MonoBehaviour
     private float m_randomValue;
     
     [NonSerialized] 
-    public bool isCritical;
+    public bool isCritical; // Вроде нигде не используется, только присваивание этой переменной
     
     [NonSerialized] 
     public bool elementForCalc;
@@ -72,7 +72,7 @@ public class ElementsGun : MonoBehaviour
 
         if (other.CompareTag("Enemy"))
         {
-            EnemyScript enemyScript = other.GetComponent<EnemyScript>();
+            EnemyScript enemyScript = other.GetComponent<EnemyScript>(); // может быть null
             MagicType enemyMagicType = enemyScript.currentElementEnemy;
             damageReceived = Mathf.Max(1, damageAmount - enemyScript.MArmor);
 
