@@ -6,9 +6,9 @@ public class Enemy : Character
 {
     private int m_heroDamage = 0;
     
-    protected Color colorD = Color.burlywood;
-    protected Color colorF = Color.darkOliveGreen;
-    protected Color colorG = Color.sienna;
+    protected Color colorD = Color.burlywood; // Нейминг цветов 
+    protected Color colorF = Color.darkOliveGreen; // <-
+    protected Color colorG = Color.sienna; // <-
     
     public EnemyFighterType currentTypeEnemyFigther;
     public Slider healthSlider;
@@ -67,12 +67,12 @@ public class Enemy : Character
         StartCoroutine(ColorDamage());
     }
     
-    public int TakeDamage()
+    public int TakeDamage()  // Тут метод по названию наносит урон, а по факту только его выводит
     {
         return m_heroDamage;
     }
     
-    public int TakeHP()
+    public int TakeHP() // тоже самое, что и сверху
     {
         return healthPoint;
     }
@@ -97,7 +97,7 @@ public class Enemy : Character
         {
             if (currentTypeEnemyFigther == EnemyFighterType.Goblin)
             {
-                m_heroDamage = Random.Range(10, 16);
+                m_heroDamage = Random.Range(10, 16);  // Тут получается, что heroDamage - урон, который наносЯт герою, а не урон самого героя, тоже переименоать надо
             }
             else if (currentTypeEnemyFigther == EnemyFighterType.Orc)
             {
@@ -109,7 +109,7 @@ public class Enemy : Character
             }
             
             other.GetComponent<Hero>().GetDamage(m_heroDamage);
-            Debug.Log("Атака героя, урон:  " + m_heroDamage);
+            Debug.Log("Атака героя, урон:  " + m_heroDamage); // $""
         }
     }
 }
