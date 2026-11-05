@@ -18,7 +18,7 @@ public class Slot : MonoBehaviour,
     private void Awake()
     {
         iconGameObject = transform.GetChild(0).gameObject;
-        itemAmountText = transform.GetChild(1).GetComponent<TMP_Text>();
+        itemAmountText = transform.GetChild(1).GetComponent<TMP_Text>(); // Если структура изменится, всё полетит индексацию лучше заменить
     }
     
     public void SetIcon(Sprite icon)
@@ -44,7 +44,7 @@ public class Slot : MonoBehaviour,
                 isEmpty = true;
                 itemAmountText.text = "";
             
-                Image icon = iconGameObject.GetComponent<Image>();
+                Image icon = iconGameObject.GetComponent<Image>(); // Стоит уточнить переменную, например iconImage
                 icon.sprite = null;
                 icon.color = m_defaultColor;
                 
@@ -53,7 +53,7 @@ public class Slot : MonoBehaviour,
             else
             {
                 itemAmountText.text = amount.ToString();
-                Debug.Log("Предмет удален, осталось: " + amount);
+                Debug.Log("Предмет удален, осталось: " + amount); // $""
             }
         }
     }

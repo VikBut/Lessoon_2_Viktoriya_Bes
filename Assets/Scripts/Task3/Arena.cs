@@ -87,11 +87,11 @@ public class Arena : MonoBehaviour
     {
         if (m_enemy.IsDead())
         {
-            Debug.Log("Герой победил! У него осталось " + m_hero.TakeHP() + " HP");
+            Debug.Log("Герой победил! У него осталось " + m_hero.TakeHP() + " HP"); // $""
         }
         else
         {
-            Debug.Log("Враг победил! У него осталось  " + m_hero.TakeHP() + " HP");
+            Debug.Log("Враг победил! У него осталось  " + m_hero.TakeHP() + " HP"); // $""
         }
     }
 

@@ -4,9 +4,9 @@ using UnityEngine.UI;
 
 public class Hero : Character
 {
-    private Color m_colorA = Color.orange;
-    private Color m_colorB = Color.blue;
-    private int m_enemyDamage = 0;
+    private Color m_colorA = Color.orange; // Названия цветов
+    private Color m_colorB = Color.blue; // Тоже
+    private int m_enemyDamage = 0; // Опять же как с файлом Enemy, скорее всего не урон противника, а урон по противнику
     
     public HeroFighterType currentTypeHeroFigther;
     public Slider healthSlider;

@@ -7,15 +7,15 @@ namespace Task1
     public class EnemyScript : MonoBehaviour
     {
         [SerializeField] 
-        private ElementsGun m_typeGun; 
+        private ElementsGun m_typeGun; // вроде нигде не используется
         
         [SerializeField]
         [Range(0, 99)]
         private int m_armor;
         
-        private Color m_colorA = Color.orange;
-        private Color m_colorB = Color.blue;
-        private Color m_colorC;
+        private Color m_colorA = Color.orange; // названия стоит изменить, чтобы понятно было, для чего эти цвета
+        private Color m_colorB = Color.blue;  // тоже
+        private Color m_colorC; // тоже
         private Color m_defaultColorEnemy;
         private Material m_material;
         private int m_hp = 100;
@@ -37,7 +37,7 @@ namespace Task1
             healthSlider.value = m_hp;
         }
 
-        public Color ApplyColor()
+        public Color ApplyColor() // Вроде в файле ElementsGun уже был похожий метод
         {
             switch (currentElementEnemy)
             {

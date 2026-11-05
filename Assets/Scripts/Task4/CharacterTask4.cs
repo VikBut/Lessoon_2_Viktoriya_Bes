@@ -3,7 +3,7 @@ using UnityEngine;
 public class CharacterTask4
 {
     private const float ChanceCriticalDamage = 0.3f;
-    private const float MagicDamage = 1.5f;
+    private const float MagicDamage = 1.5f; // Множитель а не сам урон
     private const int MaxHealth = 100;
     
     private MagicType m_targetElementType;
@@ -14,7 +14,7 @@ public class CharacterTask4
     public int Health { get; private set; } = MaxHealth;
     public bool IsAlive => Health > 0;
     
-    public CharacterTask4(string name, int armor, MagicType mTargetElementType)
+    public CharacterTask4(string name, int armor, MagicType mTargetElementType) // mTarget как-то не так, тут лучше просто targetElementType
     {
         Name = string.IsNullOrEmpty(name) ? "Unknown" : name;
         m_armor = Mathf.Max(armor, 0);
@@ -32,7 +32,7 @@ public class CharacterTask4
         float randomFloat = Random.Range(0f, 1f);
         int damageReceived = Mathf.Max(1, damage - m_armor);
 
-        if (weaponElement == MagicType.None || m_targetElementType == MagicType.None)
+        if (weaponElement == MagicType.None || m_targetElementType == MagicType.None) // Тут они не совпадают, а пустые
         {
             Debug.Log("Стихии совпадают, урон не меняется");
         }
@@ -54,12 +54,12 @@ public class CharacterTask4
         }
         
         Health = Mathf.Max(Health - damageReceived, 0);
-        Debug.Log(Name + " получил " + damageReceived + " урона");
+        Debug.Log(Name + " получил " + damageReceived + " урона"); // $""
     }
 
     public void Attack(int baseDamage, WeaponTask4 weapon, CharacterTask4 target)
     {
-        Debug.Log(Name + " атакует " + target.Name + " с оружием " + weapon.weaponName);
+        Debug.Log(Name + " атакует " + target.Name + " с оружием " + weapon.weaponName); // $""
         int totalDamage = baseDamage + weapon.damage;
         target.TakeDamage(totalDamage, weapon.weaponType);
     }

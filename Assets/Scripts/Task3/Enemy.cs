@@ -87,7 +87,7 @@ public class Enemy : Character
         {
             if (currentTypeEnemyFigther == EnemyFighterType.Goblin)
             {
-                m_heroDamage = Random.Range(10, 16);
+                m_heroDamage = Random.Range(10, 16);  // Тут получается, что heroDamage - урон, который наносЯт герою, а не урон самого героя, тоже переименоать надо
             }
             else if (currentTypeEnemyFigther == EnemyFighterType.Orc)
             {
