@@ -62,7 +62,7 @@ public class Enemy : Character
         healthPoint -= damage;
     }
     
-    public void StartEffect()
+    public void StartEffect() // Вроде не используется
     {
         StartCoroutine(ColorDamage());
     }
@@ -108,7 +108,7 @@ public class Enemy : Character
                 m_heroDamage = Random.Range(8, 12);
             }
             
-            other.GetComponent<Hero>().GetDamage(m_heroDamage);
+            other.GetComponent<Hero>().GetDamage(m_heroDamage); // Не нашёл проверку на отрицательное и нулевое ХП, если есть мой косяк
             Debug.Log("Атака героя, урон:  " + m_heroDamage); // $""
         }
     }
