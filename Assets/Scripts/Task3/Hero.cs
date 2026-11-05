@@ -81,7 +81,7 @@ public class Hero : Character
         material.color = defaultColor;
     }
     
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage) // Второе название TakeDamage, поидее конфликтов быть не должно, но одинаковые названия лучше заменить(прошлый метод сам напрашивается на переименование)
     {
         if (currentTypeHeroFigther == HeroFighterType.Mage)
         {
@@ -116,7 +116,7 @@ public class Hero : Character
                 m_enemyDamage = Random.Range(10, 16);
             }
             
-            other.GetComponent<Enemy>().GetDamage(m_enemyDamage);
+            other.GetComponent<Enemy>().GetDamage(m_enemyDamage); // тоже нет проверки на отрицательное и ноль
             Debug.Log("Атака врага, урон:  " + m_enemyDamage); //$""
         }
     }
