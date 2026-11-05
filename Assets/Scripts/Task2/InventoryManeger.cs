@@ -101,11 +101,11 @@ public class InventoryManeger  : MonoBehaviour
         }
     }
     
-    public bool AddItem(ItemScriptableObject _item, int _amount) // префикс _
+    public bool AddItem(ItemScriptableObject _item, int _amount) // префикс _; нет проверки на передачу отрицательного числа, null, ноль в amount и проверки, которую указал в 121 строке
     {
         foreach (Slot slot in slots)
         {
-            if (slot.item == _item && (slot.amount + _amount) <= _item.maxAmount)
+            if (slot.item == _item && (slot.amount + _amount) <= _item.maxAmount) // Тут наверное задание со звёздочкой, тут будет проблема с добавлением (если предметов в ячейках: 7, 8, то про добавлении 4х предметов будет занят новый слот, вместо того, чтобы распределить их по уже сужествующим)
             {
                 slot.amount += _amount;
                 slot.itemAmountText.text = slot.amount.ToString();
@@ -118,7 +118,7 @@ public class InventoryManeger  : MonoBehaviour
             if (slot.isEmpty)
             {
                 slot.item = _item;
-                slot.amount += _amount;
+                slot.amount += _amount; // Скорее всего будет переполнение ячейки, нет проверки на количество предмотов в amount (если указать 100 предметов при допустимых 10, все 100 залезут в 1 ячейку)
                 slot.isEmpty = false;
                 slot.SetIcon(_item.icon);
                 slot.itemAmountText.text = _amount.ToString();
