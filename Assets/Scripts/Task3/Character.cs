@@ -10,4 +10,5 @@ public class Character : MonoBehaviour
     protected float randomValue;
     protected Color defaultColor;
     protected Color colorC;
+    protected Color colorD;
 }
